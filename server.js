@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const app = express();
 
+
 // Serve static files....
 app.use(express.static(__dirname + '/dist/anjn-angular'));
 
@@ -9,6 +10,8 @@ app.use(express.static(__dirname + '/dist/anjn-angular'));
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname + '/dist/anjn-angular/index.html'));
 });
+
+require("./app/routes/customer.routes.js")(app);
 
 // default Heroku PORT
 var server = app.listen(process.env.PORT || 8080, function () {
