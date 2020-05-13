@@ -13,7 +13,9 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(__dirname + '/dist/anjn-angular'));
 
 // Send all requests to index.html
-
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname + '/dist/anjn-angular/index.html'));
+});
 
 require("./app/routes/customer.routes.js")(app);
 
